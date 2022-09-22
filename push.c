@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/09/12 11:01:30 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/09/21 20:26:37 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,40 +165,39 @@ int issorted(t_list **stack)
 	return(0);
 }
 
-void bsort(t_list **stack_a, t_list **stack_b)
+void sortargs(int *arg, int size)
 {
-	t_list *compare1 = *stack_a;
-	t_list *compare2 = *stack_a->next;
-	t_list *bcompare1 = *stack_b;
-	t_list *bcompare2 = *stack_b->next;
-	int i = 10;
-	int j = 10;
+	int i = 0;
+	int swap;
 
-	while(i > 0)
+	while(i < size-1)
 	{
-		if(issorted(stack_a) == 0)
-			return;
-		if(compare1->content > compare2->content)
+		if(arg[i] > arg[i+1])
 		{
-			sname(stack_a, 'a');
-			pname(stack_a, stack_b, 'b');
+			swap=arg[i+1];
+			arg[i+1] = arg[i];
+			arg[i] = swap;
+			i = -1;
 		}
-		else
-			pname(stack_a,stack_b, 'b');
-		i--;
+		i++;
 	}
-	while(i > 0)
+}
+
+void ft_bbsort(t_list **stack_a, t_list **stack_b, int *sorted, int lstsize)
+{
+	int i = 0;
+
+
+	
+}
+
+void printarr(int *print, int size)
+{
+	int j = 0;
+	while(j < (size))
 	{
-		if(issorted(stack_a) == 0)
-			return;
-		if(compare1->content > compare2->content)
-		{
-			sname(stack_a, 'a');
-			pname(stack_a, stack_b, 'b');
-		}
-		else
-			pname(stack_a,stack_b, 'b');
-		i--;
+		printf("%d ", print[j]);
+		j++;
 	}
 }
 
@@ -209,16 +208,29 @@ int main(int argc, char **argv)
 	//t_list *stack_b;
 	stack_a = NULL;
 	//stack_b = NULL;
-	int i = 1;
+	
+	int i =1;
+	int k = 0;
+	int *intv;
+	intv = malloc(sizeof(int) * 50);
 
-	if(argc - 1 ==0)
+	if(argc - 1 == 0)
 		return (0);
 
+	while(i<argc)
+	{
+		intv[k] = ft_atoi(argv[i]);
+		i++;
+		k++;
+	}
+
+	i = 1;
 	while(i<argc)
 	{
 		ft_lstadd_back(&stack_a, ft_lstnew(ft_atoi(argv[i])));
 		i++;
 	}
+	
 
 	print(stack_a);
 	printf("\n");
