@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/09/21 20:26:37 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/09/29 17:57:53 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,10 @@ void pname(t_list **stack_a, t_list **stack_b, char name)
 	t_list *second;
 
 	first = *stack_a;
-	if(first)
-		second = first->next;
+	if(!first)
+		return;
 
+	second = first->next;
 	*stack_a = second;
 	first->next = *stack_b;
 	*stack_b = first;
@@ -182,7 +183,7 @@ void sortargs(int *arg, int size)
 		i++;
 	}
 }
-
+/*
 void ft_bbsort(t_list **stack_a, t_list **stack_b, int *sorted, int lstsize)
 {
 	int i = 0;
@@ -190,10 +191,10 @@ void ft_bbsort(t_list **stack_a, t_list **stack_b, int *sorted, int lstsize)
 
 	
 }
-
+*/
 void printarr(int *print, int size)
 {
-	int j = 0;
+	int j = 1;
 	while(j < (size))
 	{
 		printf("%d ", print[j]);
@@ -212,7 +213,7 @@ int main(int argc, char **argv)
 	int i =1;
 	int k = 0;
 	int *intv;
-	intv = malloc(sizeof(int) * 50);
+	intv = malloc(sizeof(int) * argc);
 
 	if(argc - 1 == 0)
 		return (0);
@@ -231,12 +232,13 @@ int main(int argc, char **argv)
 		i++;
 	}
 	
-
-	print(stack_a);
+	sortargs(intv, argc);
+	printarr(intv, argc);
+//	print(stack_a);
 	printf("\n");
 	printf("\n");
 
-	bsort(&stack_a);
+//	bsort(&stack_a);
 	print(stack_a);
 
 }
