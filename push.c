@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/09/29 17:57:53 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/02 23:08:24 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void print(t_list *node)
 {
 	while (node != NULL)
 	{
-		printf("%d", node->content);
+		printf("%d ", node->content);
 		node = node->next;	
 	}
 }
@@ -183,15 +183,25 @@ void sortargs(int *arg, int size)
 		i++;
 	}
 }
-/*
-void ft_bbsort(t_list **stack_a, t_list **stack_b, int *sorted, int lstsize)
+
+void ft_bbsort(t_list **stack_a, t_list **stack_b, int *sorted)
 {
-	int i = 0;
+	int i = 1;
 
-
-	
+	while((*stack_a) != NULL)
+	{
+		if((*stack_a)->content == sorted[i])
+		{
+			pname(stack_a, stack_b, 'b');
+			i++;
+		}
+		else
+			rname(stack_a, 'a');
+	}
+	while((*stack_b) != NULL)
+		pname(stack_b, stack_a, 'a');
 }
-*/
+
 void printarr(int *print, int size)
 {
 	int j = 1;
@@ -202,15 +212,14 @@ void printarr(int *print, int size)
 	}
 }
 
-
 int main(int argc, char **argv)
 {
 	t_list *stack_a;
-	//t_list *stack_b;
+	t_list *stack_b;
 	stack_a = NULL;
-	//stack_b = NULL;
+	stack_b = NULL;
 	
-	int i =1;
+	int i = 1;
 	int k = 0;
 	int *intv;
 	intv = malloc(sizeof(int) * argc);
@@ -234,15 +243,25 @@ int main(int argc, char **argv)
 	
 	sortargs(intv, argc);
 	printarr(intv, argc);
-//	print(stack_a);
+	printf("AO LADO OS ARGUMENTOS DEPOIS DO SORT");
 	printf("\n");
+	printf("\n");
+	print(stack_a);
+	printf("   AO LADO A STACK PRONTA");
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	printf("AGORA VAMOS TENTAR FAZER O SORT E PRINTAR");
 	printf("\n");
 
-//	bsort(&stack_a);
+	ft_bbsort(&stack_a, &stack_b, intv);
+	printf("STACK A\n");
 	print(stack_a);
+	printf("\n");
+	printf("STACK B\n");
+	print(stack_b);
 
 }
-
 
 
 /*

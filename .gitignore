@@ -1,2 +1,4 @@
 
 *.o
+push.o
+push_swap
