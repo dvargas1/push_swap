@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/02 23:08:24 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/04 10:09:36 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ void print(t_list *node)
 	while (node != NULL)
 	{
 		printf("%d ", node->content);
+		node = node->next;	
+	}
+}
+void printindex(t_list *node)
+{
+	while (node != NULL)
+	{
+		printf("%d ", node->index);
 		node = node->next;	
 	}
 }
@@ -150,20 +158,19 @@ void rname(t_list **stack, char name)
 // RRR
 // faz rra e rrb ao mesmo tempo
 // size 
-int issorted(t_list **stack)
+int ft_issorted(t_list **stack)
 {
-	//t_list *ctr = *stack;
 	t_list *compare1 = *stack;
 	t_list *compare2 = compare1->next;
 
 	while(compare2 != NULL)
 	{
 		if(compare2->content < compare1->content)
-			return(1);
+			return(0);
 		compare1 = compare1->next;
 		compare2 = compare2->next;
 	}
-	return(0);
+	return(1);
 }
 
 void sortargs(int *arg, int size)
@@ -184,7 +191,7 @@ void sortargs(int *arg, int size)
 	}
 }
 
-void ft_bbsort(t_list **stack_a, t_list **stack_b, int *sorted)
+void ft_simplesort(t_list **stack_a, t_list **stack_b, int *sorted)
 {
 	int i = 1;
 
@@ -212,12 +219,64 @@ void printarr(int *print, int size)
 	}
 }
 
+void ft_index(t_list *stack)
+{
+	t_list *tmp = stack;
+	t_list *highest;
+	int i = ft_lstsize(stack);
+	int j;
+	
+	while(i > 0)
+	{
+		tmp = stack;
+		j = -100;
+	//	highest = NULL;
+		while(tmp)
+		{
+			if(tmp->content > j && tmp->index == 0)
+			{
+				j = tmp->content;
+				highest = tmp;
+				tmp = stack;
+			}
+			else
+				tmp = tmp->next;
+		}
+		if(highest != NULL)
+			highest->index = i;
+		--i;
+	}
+}
+
+
+void ft_sort3(t_list **stack_a)
+{
+	if(ft_issorted(stack_a))
+			return;
+	if((*stack_a)->index == 3)
+		rname(stack_a, 'a');
+	else if((*stack_a)->next->index == 3)
+		rrname(stack_a, 'a');
+	if(((*stack_a)->index > (*stack_a)->next->index))
+		sname(stack_a, 'a');
+}
+
+
+/*
+ft_letsort(t_list **stack_a, t_list **stack_b)
+{
+	
+
+
+
+}
+*/
 int main(int argc, char **argv)
 {
 	t_list *stack_a;
-	t_list *stack_b;
+//	t_list *stack_b;
 	stack_a = NULL;
-	stack_b = NULL;
+//	stack_b = NULL;
 	
 	int i = 1;
 	int k = 0;
@@ -240,27 +299,29 @@ int main(int argc, char **argv)
 		ft_lstadd_back(&stack_a, ft_lstnew(ft_atoi(argv[i])));
 		i++;
 	}
-	
+	print(stack_a);
+	ft_index(stack_a);
+	if (argc == 4)
+	{
+		ft_sort3(&stack_a);
+		printf("\nSTACK A SORTADA\n");
+		print(stack_a);
+	}
+/*
+	printindex(stack_a);
 	sortargs(intv, argc);
 	printarr(intv, argc);
-	printf("AO LADO OS ARGUMENTOS DEPOIS DO SORT");
-	printf("\n");
-	printf("\n");
+	printf("AO LADO OS ARGUMENTOS DEPOIS DO SORT\n\n");
 	print(stack_a);
-	printf("   AO LADO A STACK PRONTA");
-	printf("\n");
-	printf("\n");
-	printf("\n");
-	printf("AGORA VAMOS TENTAR FAZER O SORT E PRINTAR");
-	printf("\n");
+	printf("   AO LADO A STACK PRONTA\n\n\n");
+	printf("AGORA VAMOS TENTAR FAZER O SORT E PRINTAR\n");
 
-	ft_bbsort(&stack_a, &stack_b, intv);
-	printf("STACK A\n");
+	ft_simplesort(&stack_a, &stack_b, intv);
+	printf("\nSTACK A\n");
 	print(stack_a);
-	printf("\n");
-	printf("STACK B\n");
+	printf("\nSTACK B\n");
 	print(stack_b);
-
+*/
 }
 
 

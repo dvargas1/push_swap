@@ -6,7 +6,7 @@
 /*   By: dvargas <dvarags@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 16:02:11 by dvargas           #+#    #+#             */
-/*   Updated: 2022/09/06 10:45:38 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/04 08:53:55 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct s_list
 {
 	int			content;
+	int			index;
 	struct s_list	*next;
 }			t_list;
 

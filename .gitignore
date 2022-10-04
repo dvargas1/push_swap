@@ -2,3 +2,7 @@
 *.o
 push.o
 push_swap
+checker_linux
+push_swap_visualizer/
+push.o
+push_swap
