@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/04 10:09:36 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/06 16:03:51 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,16 +261,19 @@ void ft_sort3(t_list **stack_a)
 		sname(stack_a, 'a');
 }
 
-
-/*
-ft_letsort(t_list **stack_a, t_list **stack_b)
+void ft_sort5(t_list **stack_a, t_list **stack_b)
 {
+	pname(stack_a, stack_b, 'b');
+	pname(stack_a, stack_b, 'b');
+	ft_sort3(stack_a);
+	if((*stack_b)->index > (*stack_b)->next->index)
+		sname(stack_b, 'b');
 	
 
 
 
 }
-*/
+
 int main(int argc, char **argv)
 {
 	t_list *stack_a;
@@ -388,3 +391,16 @@ void swapa(t_list **stack_a)
 		ultimo->next = penultimo;
 }
 */
+
+
+
+/*
+ *
+ * Montar a lista encadeada com índices alocar na stack A;
+ * Atribuir na lista A todos os números que estão ordenados
+ * a começar por indice 1
+ * Passar para a stack B todos números menos 3;
+ * aplicar "ft_sort3" na stack A;
+ * Verificar qual número precisamos trazer para a stack A;
+ * Buscar na stack B e trazer para A;
+ * A lista esta Sortada.
