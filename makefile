@@ -11,7 +11,11 @@
 # **************************************************************************** #
 
 
-SRCS	=	push.c 
+SRCS	=	push.c \
+			sort.c \
+			commands.c \
+			index.c \
+			utils.c
 OBJS		= ${SRCS:%.c=%.o}
 NAME		= push_swap
 LIB			= libft/libft.a

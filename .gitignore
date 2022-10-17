@@ -6,3 +6,6 @@ checker_linux
 push_swap_visualizer/
 push.o
 push_swap
+*.o
+*.o
+push.o
