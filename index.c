@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:41:56 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/17 09:39:04 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/18 09:44:40 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int findbestindex(t_list *stack, int argc)
 void keepatribution(t_list *stack, int argc)
 {
 	int bestindex = findbestindex(stack, argc);
-	printf(" bestindex: %d", bestindex);
 	t_list *iterator = stack;
 
 	while(iterator != NULL)

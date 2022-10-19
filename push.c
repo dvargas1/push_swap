@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/17 09:41:11 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/18 17:00:16 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,70 @@ int ft_haveatribution(t_list *stack)
 	return(0);
 }
 
+
+int minindex(t_list *stack)
+{
+	int index = stack->index;
+	t_list *iterator = stack;
+
+	while(iterator != NULL)
+	{
+		if(iterator->index < index)
+			index = iterator->index;
+		iterator = iterator->next;
+	}
+	return(index);
+}
+
+int maxindex(t_list *stack)
+{
+	int index = stack->index;
+	t_list *iterator = stack;
+
+	while(iterator != NULL)
+	{
+		if(iterator->index > index)
+			index = iterator->index;
+		iterator = iterator->next;
+	}
+	return(index);
+}
+
+int isstackalign(t_list *stack)
+{
+	t_list *iterator = stack;
+	int index = minindex(stack);
+
+	while(iterator != NULL)
+	{
+		if(iterator->index == index)
+		{
+			iterator = iterator->next;
+			index++;
+		}
+		else
+			return(0);
+	}
+	return(1);
+}
+
+int contain(t_list *stack, int nb)
+{
+	t_list *iterator = stack;
+
+	while(iterator != NULL)
+	{
+		if(iterator->index == nb)
+			return(1);
+		iterator = iterator->next;
+	}
+	return(0);
+}
+
 void sortmore(t_list **stack_a, t_list **stack_b)
 {
+	int min = minindex(*stack_a);
+	int max = maxindex(*stack_a);
 	while(ft_haveatribution(*stack_a))
 	{
 		if((*stack_a)->keepinA == 1)
@@ -34,8 +96,24 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 		else
 			pname(stack_a, stack_b, 'b');
 	}
-}
+	while(!(isstackalign(*stack_a)))
+		rname(stack_a, 'a');
+// ja tentei pelo maior numero, quebra, ja tentei pelo menor numero, quebra, QUE INFENO JESUS
+	while(min <= max)
+	{
+		if(contain(*stack_a, min))
+			min++;
+		else if((*stack_b)->index == min)
+		{
+			pname(stack_b, stack_a, 'a');
+			if((*stack_a)->index > ((*stack_a)->next->index))
+				rname(stack_a, 'a');
+		}
+		else
+			rname(stack_b, 'b');
+	}
 
+}
 
 void print2(t_list *node)
 {
@@ -79,20 +157,20 @@ int main(int argc, char **argv)
 	print(stack_a);
 	printf("\n--------- Index: ");
 	printindex(stack_a);
+	printf("-----Best index Index:%d", findbestindex(stack_a,argc));
 	printf("\n---------");
 	keepatribution(stack_a, argc);
 
 	sortmore(&stack_a, &stack_b);
 
 	printf("\n---------");
-	printf("\nDepois da funcao, valor de keepina");
 	printf("\nSTACK_A:");
-	print(stack_a);
+	printindex(stack_a);
 	printf("\n---------");
 	printf("\n---------");
 	printf("\n---------");
 	printf("\nSTACK_B:");
-	print(stack_b);
+	printindex(stack_b);
 	printf("\n---------");
 }
 
