@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:58:11 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/14 09:28:15 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/23 09:30:17 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void printarr(int *print, int size);
 int ft_issorted(t_list **stack);
 void sortargs(int *arg, int size);
 void ft_simplesort(t_list **stack_a, t_list **stack_b, int *sorted);
+int maxindex(t_list *stack);
 
 //Index Manipulator
 void ft_index(t_list *stack);

@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/18 17:00:16 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/23 09:36:12 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,70 @@ int contain(t_list *stack, int nb)
 	return(0);
 }
 
+int inrange(t_list *stack,int start,int end)
+{
+	t_list *iterator = stack;
+
+	while(iterator != NULL)
+	{
+		if(iterator->index > start && iterator->index < end)
+			return(1);
+		iterator=iterator->next;
+	}
+	return(0);
+}
+
+int bestn(int size)
+{
+    int n;
+    if (size <= 10)
+        n = 5;
+    else if (size <= 150)
+        n = 8;
+    else
+	{
+        n = 18;
+	}
+	return(n);
+}
+
 void sortmore(t_list **stack_a, t_list **stack_b)
 {
-	int min = minindex(*stack_a);
-	int max = maxindex(*stack_a);
+	int n = bestn(ft_lstsize(*stack_a));
+	int middle = ft_lstsize(*stack_a) / 2;
+	int offset = ft_lstsize(*stack_a) / n;
+    int start  = ft_lstsize(*stack_a) / 2 - offset;
+    int end = ft_lstsize(*stack_a) / 2 + offset;
+
+	printf("offset: %d, start: %d, end: %d", offset, start, end);
+	while(ft_lstsize(*stack_a) != 3)
+	{
+		if(inrange(*stack_a, start, end))
+		{
+			if((*stack_a)->index > start && ((*stack_a)->index < end))
+				{
+					if((*stack_a)->index > middle)
+						pname(stack_a, stack_b, 'b');
+					else
+					{
+						pname(stack_a, stack_b, 'b');
+						rname(stack_b, 'b');
+					}
+				}
+			else
+				rname(stack_a, 'a');
+		}
+		else
+		{
+			start = start - offset;
+			end = end + offset;
+		}
+	}
+	ft_sort3(&*stack_a);
+}
+
+/*
+void sortmore(t_list **stack_a, t_list **stack_b)
 	while(ft_haveatribution(*stack_a))
 	{
 		if((*stack_a)->keepinA == 1)
@@ -98,31 +158,8 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 	}
 	while(!(isstackalign(*stack_a)))
 		rname(stack_a, 'a');
-// ja tentei pelo maior numero, quebra, ja tentei pelo menor numero, quebra, QUE INFENO JESUS
-	while(min <= max)
-	{
-		if(contain(*stack_a, min))
-			min++;
-		else if((*stack_b)->index == min)
-		{
-			pname(stack_b, stack_a, 'a');
-			if((*stack_a)->index > ((*stack_a)->next->index))
-				rname(stack_a, 'a');
-		}
-		else
-			rname(stack_b, 'b');
-	}
-
 }
-
-void print2(t_list *node)
-{
-	while(node != NULL)
-	{
-		printf("%d", node->keepinA);
-		node = node->next;
-	}
-}
+*/
 
 int main(int argc, char **argv)
 {
