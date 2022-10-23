@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/23 09:36:12 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/23 09:49:06 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,16 +190,16 @@ int main(int argc, char **argv)
 		i++;
 	}
 	ft_index(stack_a);
-	printf("\nSTACK_A:");
-	print(stack_a);
-	printf("\n--------- Index: ");
-	printindex(stack_a);
-	printf("-----Best index Index:%d", findbestindex(stack_a,argc));
-	printf("\n---------");
-	keepatribution(stack_a, argc);
+//	printf("\nSTACK_A:");
+//	print(stack_a);
+//	printf("\n--------- Index: ");
+//	printindex(stack_a);
+//	printf("-----Best index Index:%d", findbestindex(stack_a,argc));
+//	printf("\n---------");
+//	keepatribution(stack_a, argc);
 
 	sortmore(&stack_a, &stack_b);
-
+/*
 	printf("\n---------");
 	printf("\nSTACK_A:");
 	printindex(stack_a);
@@ -209,6 +209,7 @@ int main(int argc, char **argv)
 	printf("\nSTACK_B:");
 	printindex(stack_b);
 	printf("\n---------");
+	*/
 }
 
 
