@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/24 18:53:34 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:11:02 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,15 +114,15 @@ int bestn(int size)
 
 int checklastnode(t_list *stack)
 {
-	int content;
+	int index;
 	t_list *iterator = stack;
 
 	while(iterator != NULL)
 	{
-		content = iterator->content;
+		index = iterator->index;
 		iterator = iterator->next;
 	}
-	return(content);
+	return(index);
 }
 
 int findup(t_list *stack, int find, int up)
@@ -130,7 +130,7 @@ int findup(t_list *stack, int find, int up)
 	t_list *iterator = stack;
 	while(up > 0)
 	{
-		if(iterator->content == find)
+		if(iterator->index == find)
 			return(1);
 		iterator = iterator->next;
 		up--;
@@ -177,27 +177,28 @@ printf("VAI RODAR SORT3 \n");
 	ft_sort3(&*stack_a);
 
 printf("VAI COMEÇAR A PUTARIA \n");
-
-
 	while(search > 0)
 	{
 		if(contain(*stack_a, search) == 1)
 		{
+			printf("search:%d    ", search);
 			if(findup(*stack_a, search, up) == 1)
 			{
+			printf("chegou aqui");
 				search--;
 				up--;
 			}
-			else if(checklastnode(*stack_a) == search)
+			else if(checklastnode(*stack_a) == search && down > 0)
 			{
 				rrname(stack_a, 'a');
 				down--;
-				search--;
 			}
+			else
+				search--;
 		}
 		else
 		{
-			if((*stack_b)->content == search)
+			if((*stack_b)->index == search)
 			{
 				if(up == 0)
 					pname(stack_b, stack_a, 'a');
@@ -210,28 +211,25 @@ printf("VAI COMEÇAR A PUTARIA \n");
 					}
 					pname(stack_b, stack_a, 'a');
 					sname(stack_a, 'a');
-					search--;
 				}
 			}
 		
 			else
 			{
-				if((*stack_b)->content > checklastnode(*stack_a))
+				if((*stack_b)->index > checklastnode(*stack_a))
 				{
-					while((*stack_b)->content > ((*stack_a)->content))
+					while((*stack_b)->index > ((*stack_a)->index))
 					{
 						rname(stack_a, 'a');
 						up--;
 						down++;
 					}	
 				
-				if((*stack_b)->content < ((*stack_a)->content))
-				{
+				if((*stack_b)->index < ((*stack_a)->index))
 					pname(stack_b, stack_a, 'a');
-					search--;
-				}
 				}
 			}
+			search--;
 		}
 	}
 }
