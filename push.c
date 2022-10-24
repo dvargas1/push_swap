@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/24 19:11:02 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:41:33 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void sortmore(t_list **stack_a, t_list **stack_b)
     int end = ft_lstsize(*stack_a) / 2 + offset;
 	unsigned int up = 0;
 	unsigned int down = 0;
-	int search = maxindex(*stack_a);
+	int search = ft_lstsize(*stack_a);
 
 	while(ft_lstsize(*stack_a) != 3)
 	{
@@ -179,9 +179,9 @@ printf("VAI RODAR SORT3 \n");
 printf("VAI COMEÇAR A PUTARIA \n");
 	while(search > 0)
 	{
+		printf("search:%d    ", search);
 		if(contain(*stack_a, search) == 1)
 		{
-			printf("search:%d    ", search);
 			if(findup(*stack_a, search, up) == 1)
 			{
 			printf("chegou aqui");
@@ -209,7 +209,7 @@ printf("VAI COMEÇAR A PUTARIA \n");
 						rname(stack_a, 'a');
 						up--;
 					}
-					pname(stack_b, stack_a, 'a');
+					pname(stack_b, stack_a, 'b');
 					sname(stack_a, 'a');
 				}
 			}
