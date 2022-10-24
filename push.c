@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/24 18:40:09 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/24 18:53:34 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 	unsigned int down = 0;
 	int search = maxindex(*stack_a);
 
-	printf("offset: %d, start: %d, end: %d", offset, start, end);
 	while(ft_lstsize(*stack_a) != 3)
 	{
 		if(inrange(*stack_a, start, end))
@@ -173,25 +172,35 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 			end = end + offset;
 		}
 	}
+
+printf("VAI RODAR SORT3 \n");
 	ft_sort3(&*stack_a);
+
+printf("VAI COMEÇAR A PUTARIA \n");
+
 
 	while(search > 0)
 	{
+		if(contain(*stack_a, search) == 1)
+		{
 			if(findup(*stack_a, search, up) == 1)
 			{
 				search--;
 				up--;
 			}
-			else if(findup(*stack_a, search, up) == 0 && down > 0)
+			else if(checklastnode(*stack_a) == search)
 			{
 				rrname(stack_a, 'a');
 				down--;
 				search--;
 			}
+		}
+		else
+		{
 			if((*stack_b)->content == search)
 			{
 				if(up == 0)
-					pname(stack_b, stack_a, 'b');
+					pname(stack_b, stack_a, 'a');
 				else
 				{
 					while(up > 1)
@@ -199,11 +208,14 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 						rname(stack_a, 'a');
 						up--;
 					}
-					pname(stack_b, stack_a, 'b');
+					pname(stack_b, stack_a, 'a');
 					sname(stack_a, 'a');
+					search--;
 				}
 			}
+		
 			else
+			{
 				if((*stack_b)->content > checklastnode(*stack_a))
 				{
 					while((*stack_b)->content > ((*stack_a)->content))
@@ -214,9 +226,13 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 					}	
 				
 				if((*stack_b)->content < ((*stack_a)->content))
-					pname(stack_b, stack_a, 'b');
+				{
+					pname(stack_b, stack_a, 'a');
+					search--;
 				}
-			search--;
+				}
+			}
+		}
 	}
 }
 
