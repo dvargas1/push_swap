@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/24 18:26:57 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/24 18:40:09 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,15 @@ int bestn(int size)
 
 int checklastnode(t_list *stack)
 {
+	int content;
 	t_list *iterator = stack;
 
 	while(iterator != NULL)
 	{
+		content = iterator->content;
 		iterator = iterator->next;
 	}
-	return(iterator->content);
+	return(content);
 }
 
 int findup(t_list *stack, int find, int up)
@@ -175,8 +177,6 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 
 	while(search > 0)
 	{
-		if(contain(*stack_a, search) == 1)
-		{
 			if(findup(*stack_a, search, up) == 1)
 			{
 				search--;
@@ -188,9 +188,6 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 				down--;
 				search--;
 			}
-		}
-		else
-		{
 			if((*stack_b)->content == search)
 			{
 				if(up == 0)
@@ -219,7 +216,7 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 				if((*stack_b)->content < ((*stack_a)->content))
 					pname(stack_b, stack_a, 'b');
 				}
-		}
+			search--;
 	}
 }
 
