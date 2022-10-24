@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/23 09:49:06 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/24 18:26:57 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,30 @@ int bestn(int size)
 	return(n);
 }
 
+int checklastnode(t_list *stack)
+{
+	t_list *iterator = stack;
+
+	while(iterator != NULL)
+	{
+		iterator = iterator->next;
+	}
+	return(iterator->content);
+}
+
+int findup(t_list *stack, int find, int up)
+{
+	t_list *iterator = stack;
+	while(up > 0)
+	{
+		if(iterator->content == find)
+			return(1);
+		iterator = iterator->next;
+		up--;
+	}
+	return(0);
+}
+
 void sortmore(t_list **stack_a, t_list **stack_b)
 {
 	int n = bestn(ft_lstsize(*stack_a));
@@ -119,6 +143,9 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 	int offset = ft_lstsize(*stack_a) / n;
     int start  = ft_lstsize(*stack_a) / 2 - offset;
     int end = ft_lstsize(*stack_a) / 2 + offset;
+	unsigned int up = 0;
+	unsigned int down = 0;
+	int search = maxindex(*stack_a);
 
 	printf("offset: %d, start: %d, end: %d", offset, start, end);
 	while(ft_lstsize(*stack_a) != 3)
@@ -145,6 +172,55 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 		}
 	}
 	ft_sort3(&*stack_a);
+
+	while(search > 0)
+	{
+		if(contain(*stack_a, search) == 1)
+		{
+			if(findup(*stack_a, search, up) == 1)
+			{
+				search--;
+				up--;
+			}
+			else if(findup(*stack_a, search, up) == 0 && down > 0)
+			{
+				rrname(stack_a, 'a');
+				down--;
+				search--;
+			}
+		}
+		else
+		{
+			if((*stack_b)->content == search)
+			{
+				if(up == 0)
+					pname(stack_b, stack_a, 'b');
+				else
+				{
+					while(up > 1)
+					{
+						rname(stack_a, 'a');
+						up--;
+					}
+					pname(stack_b, stack_a, 'b');
+					sname(stack_a, 'a');
+				}
+			}
+			else
+				if((*stack_b)->content > checklastnode(*stack_a))
+				{
+					while((*stack_b)->content > ((*stack_a)->content))
+					{
+						rname(stack_a, 'a');
+						up--;
+						down++;
+					}	
+				
+				if((*stack_b)->content < ((*stack_a)->content))
+					pname(stack_b, stack_a, 'b');
+				}
+		}
+	}
 }
 
 /*
