@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/25 15:41:34 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/25 16:02:06 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,13 +197,11 @@ printf("VAI COMEÇAR A PUTARIA \n");
 		{
 			if(findup(*stack_a, search, up) == 1 && up > 0)
 			{
-			printf("chegou aqui");
 				search--;
 				up--;
 			}
 			else if(checklastnode(*stack_a) == search && down > 0)
 			{
-				printf("search do else:%d    ", search);
 				rrname(stack_a, 'a');
 				down--;
 				search--;
@@ -229,12 +227,16 @@ printf("VAI COMEÇAR A PUTARIA \n");
 						up++;
 					}
 				}
-				while((*stack_b)->index < checklastnode(*stack_a) && down > 0)
+				if((*stack_b)->index < checklastnode(*stack_a) && down > 0)
 				{
-					rrname(stack_a, 'a');
-					down--;
-					up++;
+					rrname(stack_b, 'b');
 				}
+			//	while((*stack_b)->index < checklastnode(*stack_a) && down > 0)
+			//	{
+			//		rrname(stack_a, 'a');
+			//		down--;
+			//		up++;
+			//	}
 			}
 			else if((*stack_b)->index == search)
 			{
@@ -249,7 +251,7 @@ printf("VAI COMEÇAR A PUTARIA \n");
 						rname(stack_a, 'a');
 						up--;
 					}
-					pname(stack_b, stack_a, 'b');
+					pname(stack_b, stack_a, 'a');
 					sname(stack_a, 'a');
 				}
 			}
