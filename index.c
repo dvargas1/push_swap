@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:41:56 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/18 09:44:40 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/25 17:09:09 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void ft_index(t_list *stack)
 	t_list *tmp = stack;
 	t_list *highest;
 	int i = ft_lstsize(stack);
-	int j;
+	int j = 0;
 	
 	while(i > 0)
 	{

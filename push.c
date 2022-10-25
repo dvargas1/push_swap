@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/25 17:03:26 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/25 18:24:45 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,11 +153,12 @@ int jeff(t_list *stack, int nb)
 
 	while(iterator != NULL)
 	{
-		position++;
 		if(iterator->index == nb)
 			break;
+		position++;
 		iterator = iterator->next;
 	}
+		printf("nb: %d   indiceatual: %d\n", nb, iterator->index);
 	return(position);
 }
 
@@ -196,7 +197,7 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 			end = end + offset;
 		}
 	}
-	while(search > 0)
+	while(*stack_b != NULL)
 	{
 		if((*stack_b)->index == search)
 		{
@@ -206,20 +207,20 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 		else
 		{
 			pos = jeff(*stack_b, search);
-			if(pos > (search / 2))
+			if(pos <= (search / 2))
 			{
-				pos = search - pos + 1;
-				while(pos != 0)
+				while(pos > 0)
 				{
-					rrname(stack_b, 'b');
+					rname(stack_b, 'b');
 					pos--;
 				}
 			}
 			else
 			{
-				while(pos !=0)
+				pos = search - pos + 1;
+				while(pos > 0)
 				{
-					rname(stack_b, 'b');
+					rrname(stack_b, 'b');
 					pos--;
 				}
 			}
@@ -368,6 +369,7 @@ int main(int argc, char **argv)
 	printindex(stack_b);
 	printf("\n---------");
 	*/
+	free(intv);
 }
 
 
