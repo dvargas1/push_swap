@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/24 22:46:42 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/25 07:27:38 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,12 +177,12 @@ printf("VAI RODAR SORT3 \n");
 	ft_sort3(&*stack_a);
 
 printf("VAI COMEÇAR A PUTARIA \n");
-	while(search-- > 0)
+	while(search > 0)
 	{
 		printf("search:%d    ", search);
 		if(contain(*stack_a, search) == 1)
 		{
-			if(findup(*stack_a, search, up) == 1)
+			if(findup(*stack_a, search, up) == 1 && up > 0)
 			{
 			printf("chegou aqui");
 				search--;
