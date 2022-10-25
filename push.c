@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/25 07:27:38 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/25 15:41:34 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,14 @@ int findup(t_list *stack, int find, int up)
 	return(0);
 }
 
+int testelindo(int nbr1, int nbr2)
+{
+	if(nbr1 > nbr2)
+		return(1);
+	else
+		return(0);
+}
+
 void sortmore(t_list **stack_a, t_list **stack_b)
 {
 	int n = bestn(ft_lstsize(*stack_a));
@@ -149,11 +157,12 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 	unsigned int down = 0;
 	int search = ft_lstsize(*stack_a);
 
+printindex(*stack_a);
 	while(ft_lstsize(*stack_a) != 3)
 	{
 		if(inrange(*stack_a, start, end))
 		{
-			if((*stack_a)->index > start && ((*stack_a)->index < end))
+			if((*stack_a)->index >= start && ((*stack_a)->index <= end))
 				{
 					if((*stack_a)->index > middle)
 						pname(stack_a, stack_b, 'b');
@@ -175,11 +184,15 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 
 printf("VAI RODAR SORT3 \n");
 	ft_sort3(&*stack_a);
+printindex(*stack_a);
+printf("\n");
+printindex(*stack_b);
+printf("search:%d    ", search);
 
 printf("VAI COMEÇAR A PUTARIA \n");
 	while(search > 0)
 	{
-		printf("search:%d    ", search);
+		//printf("search:%d    ", search);
 		if(contain(*stack_a, search) == 1)
 		{
 			if(findup(*stack_a, search, up) == 1 && up > 0)
@@ -190,17 +203,19 @@ printf("VAI COMEÇAR A PUTARIA \n");
 			}
 			else if(checklastnode(*stack_a) == search && down > 0)
 			{
+				printf("search do else:%d    ", search);
 				rrname(stack_a, 'a');
 				down--;
+				search--;
 			}
 			else
 				search--;
 		}
-		else
+		else if (contain(*stack_b, search) == 1)
 		{
 			if((*stack_b)->index != search)
 			{
-				if((*stack_b)->index > checklastnode(*stack_a))
+				if((*stack_b)->index > checklastnode(*stack_a) || down == 0)
 				{
 					while((*stack_b)->index > ((*stack_a)->index))
 					{
@@ -208,18 +223,25 @@ printf("VAI COMEÇAR A PUTARIA \n");
 						up--;
 						down++;
 					}	
-				
-				if((*stack_b)->index < ((*stack_a)->index))
-				{
-					pname(stack_b, stack_a, 'a');
-					up++;
+					if((*stack_b)->index < ((*stack_a)->index))
+					{
+						pname(stack_b, stack_a, 'a');
+						up++;
+					}
 				}
+				while((*stack_b)->index < checklastnode(*stack_a) && down > 0)
+				{
+					rrname(stack_a, 'a');
+					down--;
+					up++;
 				}
 			}
 			else if((*stack_b)->index == search)
 			{
 				if(up == 0)
+				{
 					pname(stack_b, stack_a, 'a');
+				}
 				else
 				{
 					while(up > 1)
@@ -231,8 +253,10 @@ printf("VAI COMEÇAR A PUTARIA \n");
 					sname(stack_a, 'a');
 				}
 			}
+
 		}
 	}
+printindex(*stack_a);
 }
 
 /*

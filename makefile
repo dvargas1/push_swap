@@ -6,7 +6,7 @@
 #    By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/07 17:54:24 by dvargas           #+#    #+#              #
-#    Updated: 2022/09/06 09:41:12 by dvargas          ###   ########.fr        #
+#    Updated: 2022/10/25 15:21:09 by dvargas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJS		= ${SRCS:%.c=%.o}
 NAME		= push_swap
 LIB			= libft/libft.a
 CC			= cc
-CCFLAGS		= -Wall -Wextra -Werror -I libft/
+CCFLAGS		= -Wall -Wextra -Werror -g -I libft/
 LIBFT_PATH  = libft/
 
 all:		${NAME}
