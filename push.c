@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/24 19:41:33 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/24 22:38:38 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 	unsigned int down = 0;
 	int search = ft_lstsize(*stack_a);
 
-	while(ft_lstsize(*stack_a) != 3)
+	while(ft_lstsize(*stack_a) != 1)
 	{
 		if(inrange(*stack_a, start, end))
 		{
@@ -198,7 +198,25 @@ printf("VAI COMEÇAR A PUTARIA \n");
 		}
 		else
 		{
-			if((*stack_b)->index == search)
+			if((*stack_b)->index != search)
+			{
+				if((*stack_b)->index > checklastnode(*stack_a))
+				{
+					while((*stack_b)->index > ((*stack_a)->index))
+					{
+						rname(stack_a, 'a');
+						up--;
+						down++;
+					}	
+				
+				if((*stack_b)->index < ((*stack_a)->index))
+				{
+					pname(stack_b, stack_a, 'a');
+					up++;
+				}
+				}
+			}
+			else if((*stack_b)->index == search)
 			{
 				if(up == 0)
 					pname(stack_b, stack_a, 'a');
@@ -211,22 +229,6 @@ printf("VAI COMEÇAR A PUTARIA \n");
 					}
 					pname(stack_b, stack_a, 'b');
 					sname(stack_a, 'a');
-				}
-			}
-		
-			else
-			{
-				if((*stack_b)->index > checklastnode(*stack_a))
-				{
-					while((*stack_b)->index > ((*stack_a)->index))
-					{
-						rname(stack_a, 'a');
-						up--;
-						down++;
-					}	
-				
-				if((*stack_b)->index < ((*stack_a)->index))
-					pname(stack_b, stack_a, 'a');
 				}
 			}
 			search--;
@@ -346,6 +348,7 @@ int main(int argc, char **argv)
 	printf("\n");
 	print(stack_b);
 
+		search--;
 //	--------------SA TESTER------------------
 //	
 	printf("PRINTING STACK A\n");
