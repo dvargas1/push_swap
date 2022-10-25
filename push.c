@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/25 16:36:10 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/25 17:03:26 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,21 @@ int testelindo(int nbr1, int nbr2)
 		return(0);
 }
 
+int jeff(t_list *stack, int nb)
+{
+	t_list *iterator = stack;
+	int position = 0;
+
+	while(iterator != NULL)
+	{
+		position++;
+		if(iterator->index == nb)
+			break;
+		iterator = iterator->next;
+	}
+	return(position);
+}
+
 void sortmore(t_list **stack_a, t_list **stack_b)
 {
 	int n = bestn(ft_lstsize(*stack_a));
@@ -153,12 +168,12 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 	int offset = ft_lstsize(*stack_a) / n;
     int start  = ft_lstsize(*stack_a) / 2 - offset;
     int end = ft_lstsize(*stack_a) / 2 + offset;
-	unsigned int up = 0;
-	unsigned int down = 0;
+	//unsigned int up = 0;
+	//unsigned int down = 0;
 	int search = ft_lstsize(*stack_a);
+	int pos = 0;
 
-printindex(*stack_a);
-	while(ft_lstsize(*stack_a) != 3)
+	while(ft_lstsize(*stack_a) != 0)
 	{
 		if(inrange(*stack_a, start, end))
 		{
@@ -181,7 +196,38 @@ printindex(*stack_a);
 			end = end + offset;
 		}
 	}
+	while(search > 0)
+	{
+		if((*stack_b)->index == search)
+		{
+			pname(stack_b, stack_a, 'a');
+			search--;
+		}
+		else
+		{
+			pos = jeff(*stack_b, search);
+			if(pos > (search / 2))
+			{
+				pos = search - pos + 1;
+				while(pos != 0)
+				{
+					rrname(stack_b, 'b');
+					pos--;
+				}
+			}
+			else
+			{
+				while(pos !=0)
+				{
+					rname(stack_b, 'b');
+					pos--;
+				}
+			}
+		}
 
+	}
+printindex(*stack_a);
+/*
 printf("VAI RODAR SORT3 \n");
 	ft_sort3(&*stack_a);
 printindex(*stack_a);
@@ -256,6 +302,7 @@ printf("VAI COMEÇAR A PUTARIA \n");
 		}
 	}
 printindex(*stack_a);
+*/
 }
 
 /*
