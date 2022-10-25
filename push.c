@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/25 16:07:55 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/25 16:36:10 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,6 @@ printf("VAI COMEÇAR A PUTARIA \n");
 			{
 				rrname(stack_a, 'a');
 				down--;
-				search--;
 			}
 			else
 				search--;
@@ -239,6 +238,8 @@ printf("VAI COMEÇAR A PUTARIA \n");
 				if(up == 0)
 				{
 					pname(stack_b, stack_a, 'a');
+					if((*stack_a)->index > ((*stack_a)->next->index))
+						sname(stack_a, 'a');
 				}
 				else
 				{
