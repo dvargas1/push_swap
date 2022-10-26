@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/25 20:57:43 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/10/25 21:28:38 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,8 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 	unsigned int down = 0;
 	int search = ft_lstsize(*stack_a);
 	//int pos = 0;
-
+// If para start e end (se start menor que 1 volta ele pra 1) mesma coisa com o topo. Dentro do else de fora
+// Percorrer lista verificando o range e retornando 0 e 1
 	while(ft_lstsize(*stack_a) != 3)
 	{
 		if(inrange(*stack_a, start, end))
@@ -257,7 +258,7 @@ printf("VAI COMEÇAR A PUTARIA \n");
 			else
 				search--;
 		}
-		else if (contain(*stack_b, search) == 1)
+		else if(contain(*stack_b, search) == 1)
 		{
 			if((*stack_b)->index != search)
 			{
@@ -289,6 +290,7 @@ printf("VAI COMEÇAR A PUTARIA \n");
 					pname(stack_b, stack_a, 'a');
 					if((*stack_a)->index > ((*stack_a)->next->index))
 						sname(stack_a, 'a');
+					search--;
 				}
 				else
 				{
@@ -299,6 +301,7 @@ printf("VAI COMEÇAR A PUTARIA \n");
 					}
 					pname(stack_b, stack_a, 'a');
 					sname(stack_a, 'a');
+					search--;
 				}
 			}
 
