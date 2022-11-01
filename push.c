@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/25 21:37:50 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/01 09:24:32 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ int contain(t_list *stack, int nb)
 	return(0);
 }
 
-int inrange(t_list *stack,int start,int end)
+int inrange(t_list *stack, int start, int end)
 {
 	t_list *iterator = stack;
 
 	while(iterator != NULL)
 	{
-		if(iterator->index > start && iterator->index < end)
+		if(iterator->index >= start && iterator->index <= end)
 			return(1);
 		iterator=iterator->next;
 	}
@@ -138,14 +138,6 @@ int findup(t_list *stack, int find, int up)
 	return(0);
 }
 
-int testelindo(int nbr1, int nbr2)
-{
-	if(nbr1 > nbr2)
-		return(1);
-	else
-		return(0);
-}
-
 int jeff(t_list *stack, int nb)
 {
 	t_list *iterator = stack;
@@ -164,19 +156,26 @@ int jeff(t_list *stack, int nb)
 
 void sortmore(t_list **stack_a, t_list **stack_b)
 {
-	int n = bestn(ft_lstsize(*stack_a));
-	int middle = ft_lstsize(*stack_a) / 2;
-	int offset = ft_lstsize(*stack_a) / n;
-    int start  = ft_lstsize(*stack_a) / 2 - offset;
-    int end = ft_lstsize(*stack_a) / 2 + offset;
-	unsigned int up = 0;
-	unsigned int down = 0;
-	int search = ft_lstsize(*stack_a);
+	int sizeoflist = ft_lstsize(*stack_a);
+	int n = bestn(sizeoflist);
+	int middle = sizeoflist / 2;
+	int offset = sizeoflist / n;
+    int start  = sizeoflist / 2 - offset;
+    int end = sizeoflist / 2 + offset;
+	//int up = 0;
+	//int down = 0;
+	//int search = ft_lstsize(*stack_a);
 	//int pos = 0;
 // If para start e end (se start menor que 1 volta ele pra 1) mesma coisa com o topo. Dentro do else de fora
-// Percorrer lista verificando o range e retornando 0 e 1
 	while(ft_lstsize(*stack_a) != 3)
 	{
+		//RNAME ESTA COM UM GRANDE PROBLEMA QUANDO ESTÁ SOZINHO, RESOLVA ISSO PFVR.
+		printf("\n\níndice no topo :%d \n valor de start:%d \n valor de end:%d \n", (*stack_a)->index, start, end);
+		printf("\nStackA:");
+		printindex(*stack_a);
+		printf("\nSTACKB: ");
+		printindex(*stack_b);
+		printf("\n");
 		if(inrange(*stack_a, start, end))
 		{
 			if((*stack_a)->index >= start && ((*stack_a)->index <= end))
@@ -196,8 +195,13 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 		{
 			start = start - offset;
 			end = end + offset;
+			if(start < 1)
+				start = 1;
+			if(end > sizeoflist)
+				end = sizeoflist;
 		}
 	}
+}
 
 /*
 	while(*stack_b != NULL)
@@ -230,7 +234,7 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 		}
 
 	}
-	*/
+	
 
 printf("VAI RODAR SORT3 \n");
 	ft_sort3(&*stack_a);
@@ -238,18 +242,20 @@ printindex(*stack_a);
 printf("\n");
 printindex(*stack_b);
 printf("search:%d    ", search);
-
+pname(stack_a, stack_b, 'b');
 printf("VAI COMEÇAR A PUTARIA \n");
 	while(search > 0)
 	{
-		//printf("search:%d    ", search);
+		//Se estiver na stack A
 		if(contain(*stack_a, search) == 1)
 		{
+			//Verificar se o número está na área UP (area up precisa existir)
 			if(findup(*stack_a, search, up) == 1 && up > 0)
 			{
 				search--;
 				up--;
 			}
+			//Verifique se é o último número da área down (area down precisa existir)
 			else if((checklastnode(*stack_a) == search) && down > 0)
 			{
 				rrname(stack_a, 'a');
@@ -259,69 +265,60 @@ printf("VAI COMEÇAR A PUTARIA \n");
 			else
 				search--;
 		}
+		//Se está na STACK B
 		else if(contain(*stack_b, search) == 1)
 		{
+			//Número não está na cabeça da stack B
 			if((*stack_b)->index != search)
 			{
+				//o Número no topo da B é maior que o número na base de down?
 				if((*stack_b)->index > checklastnode(*stack_a) || down == 0)
 				{
-					while((*stack_b)->index > ((*stack_a)->index))
-					{
-						rname(stack_a, 'a');
-						up--;
-						down++;
-					}	
+					// Se TOPO B menor que TOPO A
 					if((*stack_b)->index < ((*stack_a)->index))
 					{
-						pname(stack_b, stack_a, 'a');
+						pname(stack_b, stack_a, '1');
+						up++;
+					}
+					//enquanto TOPO B for maior que TOPO A 
+					if(((*stack_b)->index) > ((*stack_a)->index))
+					{
+						rname(stack_a, 'm');
+						up--;
+						down++;
+					}
+					// enquanto TOPO B maior que último número da stack A
+					if(((*stack_b)->index < checklastnode(*stack_a)) && down > 0)
+					{
+						rrname(stack_a, 'a');
+						down--;
 						up++;
 					}
 				}
-				while(((*stack_b)->index < checklastnode(*stack_a)) && down > 0)
-				{
-					rrname(stack_a, 'a');
-					down--;
-					up++;
-				}
 			}
+			//Número está na cabeça da stack B
 			else if((*stack_b)->index == search)
 			{
+				//Se up estiver vazia, mande o número para o topo de A
 				if(up == 0)
-				{
 					pname(stack_b, stack_a, 'a');
-					if((*stack_a)->index > ((*stack_a)->next->index))
-						sname(stack_a, 'a');
-					search--;
-				}
-				else
+				//Rotacione a pilha A ate ter somente 1 elemento na àrea up
+				if(up > 1)
 				{
-					while(up > 1)
+					if(up > 1)
 					{
-						rname(stack_a, 'a');
+						printf("%d", up);
+						rname(stack_a, 't');
 						up--;
+						down++;
 					}
 					pname(stack_b, stack_a, 'a');
 					sname(stack_a, 'a');
-					search--;
 				}
 			}
 
 		}
 	}
-printindex(*stack_a);
-}
-
-/*
-void sortmore(t_list **stack_a, t_list **stack_b)
-	while(ft_haveatribution(*stack_a))
-	{
-		if((*stack_a)->keepinA == 1)
-			rname(stack_a, 'a');
-		else
-			pname(stack_a, stack_b, 'b');
-	}
-	while(!(isstackalign(*stack_a)))
-		rname(stack_a, 'a');
 }
 */
 
@@ -333,20 +330,20 @@ int main(int argc, char **argv)
 	stack_b = NULL;
 	
 	int i = 1;
-	int k = 0;
-	int *intv;
-	intv = malloc(sizeof(int) * argc);
+//	int k = 0;
+//	int *intv;
+//	intv = malloc(sizeof(int) * argc);
 
 	if(argc - 1 == 0)
 		return (0);
-
+/*
 	while(i<argc)
 	{
 		intv[k] = ft_atoi(argv[i]);
 		i++;
 		k++;
 	}
-
+*/
 	i = 1;
 	while(i<argc)
 	{
@@ -354,16 +351,14 @@ int main(int argc, char **argv)
 		i++;
 	}
 	ft_index(stack_a);
-//	printf("\nSTACK_A:");
-//	print(stack_a);
-//	printf("\n--------- Index: ");
-//	printindex(stack_a);
-//	printf("-----Best index Index:%d", findbestindex(stack_a,argc));
-//	printf("\n---------");
-//	keepatribution(stack_a, argc);
+	printf("\nSTACK_A:");
+	print(stack_a);
+	printf("\n--------- Index: ");
+	printindex(stack_a);
 
 	sortmore(&stack_a, &stack_b);
-/*
+
+
 	printf("\n---------");
 	printf("\nSTACK_A:");
 	printindex(stack_a);
@@ -373,8 +368,8 @@ int main(int argc, char **argv)
 	printf("\nSTACK_B:");
 	printindex(stack_b);
 	printf("\n---------");
-	*/
-	free(intv);
+
+//	free(intv);
 }
 
 
