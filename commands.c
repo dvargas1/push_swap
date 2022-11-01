@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:57:03 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/01 09:24:08 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/01 18:39:33 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void rrname(t_list **stack, char name)
 	if(!stack)
 		return;
 	teste = *stack;
+	if(teste->next == NULL)
+		return;
 	while(teste != NULL)
 	{
 		lastbutone = last;
@@ -121,6 +123,8 @@ void rname(t_list **stack, char name)
 	if(!stack)
 		return;
 	teste = *stack;
+	if(teste->next == NULL)
+		return ;
 	while(teste != NULL)
 	{
 		last = teste;

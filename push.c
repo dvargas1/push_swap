@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/01 09:24:32 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/01 18:59:43 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ int jeff(t_list *stack, int nb)
 		position++;
 		iterator = iterator->next;
 	}
-		printf("nb: %d   indiceatual: %d\n", nb, iterator->index);
 	return(position);
 }
 
@@ -164,18 +163,10 @@ void sortmore(t_list **stack_a, t_list **stack_b)
     int end = sizeoflist / 2 + offset;
 	//int up = 0;
 	//int down = 0;
-	//int search = ft_lstsize(*stack_a);
-	//int pos = 0;
-// If para start e end (se start menor que 1 volta ele pra 1) mesma coisa com o topo. Dentro do else de fora
-	while(ft_lstsize(*stack_a) != 3)
+	int search = ft_lstsize(*stack_a);
+	int pos = 0;
+	while(ft_lstsize(*stack_a) != 0)
 	{
-		//RNAME ESTA COM UM GRANDE PROBLEMA QUANDO ESTÁ SOZINHO, RESOLVA ISSO PFVR.
-		printf("\n\níndice no topo :%d \n valor de start:%d \n valor de end:%d \n", (*stack_a)->index, start, end);
-		printf("\nStackA:");
-		printindex(*stack_a);
-		printf("\nSTACKB: ");
-		printindex(*stack_b);
-		printf("\n");
 		if(inrange(*stack_a, start, end))
 		{
 			if((*stack_a)->index >= start && ((*stack_a)->index <= end))
@@ -201,9 +192,7 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 				end = sizeoflist;
 		}
 	}
-}
 
-/*
 	while(*stack_b != NULL)
 	{
 		if((*stack_b)->index == search)
@@ -235,15 +224,15 @@ void sortmore(t_list **stack_a, t_list **stack_b)
 
 	}
 	
-
+/*
 printf("VAI RODAR SORT3 \n");
 	ft_sort3(&*stack_a);
 printindex(*stack_a);
 printf("\n");
 printindex(*stack_b);
 printf("search:%d    ", search);
-pname(stack_a, stack_b, 'b');
 printf("VAI COMEÇAR A PUTARIA \n");
+
 	while(search > 0)
 	{
 		//Se estiver na stack A
@@ -319,8 +308,9 @@ printf("VAI COMEÇAR A PUTARIA \n");
 
 		}
 	}
-}
 */
+}
+
 
 int main(int argc, char **argv)
 {
@@ -351,23 +341,23 @@ int main(int argc, char **argv)
 		i++;
 	}
 	ft_index(stack_a);
-	printf("\nSTACK_A:");
-	print(stack_a);
-	printf("\n--------- Index: ");
-	printindex(stack_a);
+//	printf("\nSTACK_A:");
+//	print(stack_a);
+//	printf("\n--------- Index: ");
+//	printindex(stack_a);
 
 	sortmore(&stack_a, &stack_b);
 
 
-	printf("\n---------");
-	printf("\nSTACK_A:");
-	printindex(stack_a);
-	printf("\n---------");
-	printf("\n---------");
-	printf("\n---------");
-	printf("\nSTACK_B:");
-	printindex(stack_b);
-	printf("\n---------");
+//	printf("\n---------");
+//	printf("\nSTACK_A:");
+//	printindex(stack_a);
+//	printf("\n---------");
+//	printf("\n---------");
+//	printf("\n---------");
+//	printf("\nSTACK_B:");
+//	printindex(stack_b);
+//	printf("\n---------");
 
 //	free(intv);
 }
