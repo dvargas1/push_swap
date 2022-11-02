@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:35:34 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/23 09:29:43 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/02 09:01:53 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //Sort 3 numeros finalizada.
 void ft_sort3(t_list **stack_a)
 {
-	int max = maxindex(*stack_a);
+	int max = 3;
 	if(ft_issorted(stack_a))
 			return;
 	if((*stack_a)->index == max)
