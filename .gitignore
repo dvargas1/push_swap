@@ -9,3 +9,4 @@ push_swap
 *.o
 *.o
 push.o
+*.ini

@@ -14,7 +14,8 @@
 SRCS	=	push.c \
 			sort.c \
 			commands.c \
-			index.c \
+			neveruse.c \
+			loadstack.c \
 			utils.c
 OBJS		= ${SRCS:%.c=%.o}
 NAME		= push_swap

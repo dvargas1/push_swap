@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 09:23:49 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/02 09:11:00 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/03 16:05:58 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void ft_sortmore(t_list **stack_a, t_list **stack_b)
 			}
 			else
 			{
-				pos = search - pos + 1;
+				pos = search - pos;
 				while(pos > 0)
 				{
 					rrname(stack_b, 'b');
@@ -165,12 +165,19 @@ int main(int argc, char **argv)
 	ft_index(stack_a);
 	if(argc - 1 == 0)
 		return (0);
-	//if(argc == 1)
-	//	return(0);
-	//if(argc == 2)
-	//	ft_sort2(*stack_a);
-	if(argc == 3)
+	if(argc - 1 == 1)
+		return(0);
+	if(argc - 1 == 2)
+		ft_sort2(&stack_a);
+	if(argc - 1 == 3)
 		ft_sort3(&stack_a);
-	if(argc > 5)
+	if(argc - 1 == 4)
+		ft_sort4(&stack_a, &stack_b);
+	if(argc - 1 == 5)
+		ft_sort5(&stack_a, &stack_b);
+	if(argc - 1 > 5)
 		ft_sortmore(&stack_a, &stack_b);
+
+//	printf("\n Testan do o sort %d :", argc-1);
+//	printindex(stack_a);
 }

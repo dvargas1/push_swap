@@ -12,6 +12,35 @@
 
 #include "push_swap.h"
 
+void ft_index(t_list *stack)
+{
+	t_list *tmp = stack;
+	t_list *highest;
+	int i = ft_lstsize(stack);
+	int j = 0;
+	
+	while(i > 0)
+	{
+		tmp = stack;
+		j = -2147483648;
+		highest = NULL;
+		while(tmp != NULL)
+		{
+			if(tmp->content > j && tmp->index == 0)
+			{
+				j = tmp->content;
+				highest = tmp;
+				tmp = stack;
+			}
+			else
+				tmp = tmp->next;
+		}
+		if(highest != NULL)
+			highest->index = i;
+		--i;
+	}
+}
+
 void print(t_list *node)
 {
 	while (node != NULL)
@@ -53,41 +82,3 @@ int ft_issorted(t_list **stack)
 	}
 	return(1);
 }
-
-
-void sortargs(int *arg, int size)
-{
-	int i = 0;
-	int swap;
-
-	while(i < size-1)
-	{
-		if(arg[i] > arg[i+1])
-		{
-			swap=arg[i+1];
-			arg[i+1] = arg[i];
-			arg[i] = swap;
-			i = -1;
-		}
-		i++;
-	}
-}
-
-void ft_simplesort(t_list **stack_a, t_list **stack_b, int *sorted)
-{
-	int i = 1;
-
-	while((*stack_a) != NULL)
-	{
-		if((*stack_a)->content == sorted[i])
-		{
-			pname(stack_a, stack_b, 'b');
-			i++;
-		}
-		else
-			rname(stack_a, 'a');
-	}
-	while((*stack_b) != NULL)
-		pname(stack_b, stack_a, 'a');
-}
-
