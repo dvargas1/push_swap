@@ -6,24 +6,25 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:57:03 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/01 18:39:33 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/05 15:26:24 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sname(t_list **stack_a, char name)
+void	sname(t_list **stack_a, char name)
 {
-	t_list *first;
-	t_list *second;
-	t_list *third;
+	t_list	*first;
+	t_list	*second;
+	t_list	*third;
 
-	if(!stack_a)
-		return;
+	if (!stack_a)
+		return ;
 	first = *stack_a;
-	if(first)
+	second = NULL;
+	if (first)
 		second = first->next;
-	if(second)
+	if (second)
 	{
 		third = second->next;
 		first->next = third;
@@ -33,18 +34,17 @@ void sname(t_list **stack_a, char name)
 	ft_putchar_fd('s', 1);
 	ft_putchar_fd(name, 1);
 	ft_putchar_fd('\n', 1);
-	return;
+	return ;
 }
 
-void pname(t_list **stack_a, t_list **stack_b, char name)
+void	pname(t_list **stack_a, t_list **stack_b, char name)
 {
-	t_list *first;
-	t_list *second;
+	t_list	*first;
+	t_list	*second;
 
 	first = *stack_a;
-	if(!first)
-		return;
-
+	if (!first)
+		return ;
 	second = first->next;
 	*stack_a = second;
 	first->next = *stack_b;
@@ -52,22 +52,22 @@ void pname(t_list **stack_a, t_list **stack_b, char name)
 	ft_putchar_fd('p', 1);
 	ft_putchar_fd(name, 1);
 	ft_putchar_fd('\n', 1);
-	return;
+	return ;
 }
 
-void rrname(t_list **stack, char name)
+void	rrname(t_list **stack, char name)
 {
-	t_list *last;
-	t_list *lastbutone;
-	t_list *node;
-	t_list *iterator;
+	t_list	*last;
+	t_list	*lastbutone;
+	t_list	*node;
+	t_list	*iterator;
 
-	if(!stack)
-		return;
+	if (!stack)
+		return ;
 	iterator = *stack;
-	if(iterator->next == NULL)
-		return;
-	while(iterator != NULL)
+	if (iterator->next == NULL)
+		return ;
+	while (iterator != NULL)
 	{
 		lastbutone = last;
 		last = iterator;
@@ -81,22 +81,22 @@ void rrname(t_list **stack, char name)
 	ft_putchar_fd('r', 1);
 	ft_putchar_fd(name, 1);
 	ft_putchar_fd('\n', 1);
-	return;
+	return ;
 }
 
-void rname(t_list **stack, char name)
+void	rname(t_list **stack, char name)
 {
-	t_list *last;
-	t_list *node;
-	t_list *node2;
-	t_list *iterator;
+	t_list	*last;
+	t_list	*node;
+	t_list	*node2;
+	t_list	*iterator;
 
-	if(!stack)
-		return;
-	iterator = *stack;
-	if(iterator->next == NULL)
+	if (!stack)
 		return ;
-	while(iterator != NULL)
+	iterator = *stack;
+	if (iterator->next == NULL)
+		return ;
+	while (iterator != NULL)
 	{
 		last = iterator;
 		iterator = iterator->next;
@@ -109,6 +109,5 @@ void rname(t_list **stack, char name)
 	ft_putchar_fd('r', 1);
 	ft_putchar_fd(name, 1);
 	ft_putchar_fd('\n', 1);
-	return;
+	return ;
 }
-

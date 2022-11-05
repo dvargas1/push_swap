@@ -6,27 +6,27 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:41:47 by dvargas           #+#    #+#             */
-/*   Updated: 2022/10/17 09:01:41 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/05 15:42:59 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_index(t_list *stack)
+void	ft_index(t_list *stack, int i, int j)
 {
-	t_list *tmp = stack;
-	t_list *highest;
-	int i = ft_lstsize(stack);
-	int j = 0;
-	
-	while(i > 0)
+	t_list	*tmp;
+	t_list	*highest;
+
+	tmp = stack;
+	i = ft_lstsize(stack);
+	while (i > 0)
 	{
 		tmp = stack;
 		j = -2147483648;
 		highest = NULL;
-		while(tmp != NULL)
+		while (tmp != NULL)
 		{
-			if(tmp->content > j && tmp->index == 0)
+			if (tmp->content > j && tmp->index == 0)
 			{
 				j = tmp->content;
 				highest = tmp;
@@ -35,50 +35,55 @@ void ft_index(t_list *stack)
 			else
 				tmp = tmp->next;
 		}
-		if(highest != NULL)
+		if (highest != NULL)
 			highest->index = i;
 		--i;
 	}
 }
 
-void print(t_list *node)
+void	print(t_list *node)
 {
 	while (node != NULL)
 	{
 		printf("%d ", node->content);
-		node = node->next;	
+		node = node->next;
 	}
 }
-void printindex(t_list *node)
+
+void	printindex(t_list *node)
 {
 	while (node != NULL)
 	{
 		printf("%d ", node->index);
-		node = node->next;	
+		node = node->next;
 	}
 }
 
-void printarr(int *print, int size)
+void	printarr(int *print, int size)
 {
-	int j = 1;
-	while(j < (size))
+	int	j;
+
+	j = 1;
+	while (j < (size))
 	{
 		printf("%d ", print[j]);
 		j++;
 	}
 }
 
-int ft_issorted(t_list **stack)
+int	ft_issorted(t_list **stack)
 {
-	t_list *compare1 = *stack;
-	t_list *compare2 = compare1->next;
+	t_list	*compare1;
+	t_list	*compare2;
 
-	while(compare2 != NULL)
+	compare1 = *stack;
+	compare2 = compare1->next;
+	while (compare2 != NULL)
 	{
-		if(compare2->content < compare1->content)
-			return(0);
+		if (compare2->content < compare1->content)
+			return (0);
 		compare1 = compare1->next;
 		compare2 = compare2->next;
 	}
-	return(1);
+	return (1);
 }
