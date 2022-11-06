@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:35:34 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/05 15:32:02 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/06 15:41:48 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_sort3(t_list **stack_a)
 	int	max;
 
 	max = maxindex(*stack_a);
-	if (ft_issorted(stack_a))
+	if (ft_issorted(stack_a) == 0)
 		return ;
 	if ((*stack_a)->index == max)
 		rname(stack_a, 'a');

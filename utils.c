@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:41:47 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/05 15:42:59 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/06 15:29:01 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,36 +41,6 @@ void	ft_index(t_list *stack, int i, int j)
 	}
 }
 
-void	print(t_list *node)
-{
-	while (node != NULL)
-	{
-		printf("%d ", node->content);
-		node = node->next;
-	}
-}
-
-void	printindex(t_list *node)
-{
-	while (node != NULL)
-	{
-		printf("%d ", node->index);
-		node = node->next;
-	}
-}
-
-void	printarr(int *print, int size)
-{
-	int	j;
-
-	j = 1;
-	while (j < (size))
-	{
-		printf("%d ", print[j]);
-		j++;
-	}
-}
-
 int	ft_issorted(t_list **stack)
 {
 	t_list	*compare1;
@@ -81,9 +51,55 @@ int	ft_issorted(t_list **stack)
 	while (compare2 != NULL)
 	{
 		if (compare2->content < compare1->content)
-			return (0);
+			return (1);
 		compare1 = compare1->next;
 		compare2 = compare2->next;
 	}
-	return (1);
+	return (0);
+}
+
+int	inrange(t_list *stack, int start, int end)
+{
+	t_list	*iterator;
+
+	iterator = stack;
+	while (iterator != NULL)
+	{
+		if (iterator->index >= start && iterator->index <= end)
+			return (1);
+		iterator = iterator->next;
+	}
+	return (0);
+}
+
+int	bestn(int size)
+{
+	int	n;
+
+	if (size <= 10)
+		n = 5;
+	else if (size <= 150)
+		n = 8;
+	else
+	{
+		n = 18;
+	}
+	return (n);
+}
+
+int	findindexposition(t_list *stack, int nb)
+{
+	t_list	*iterator;
+	int		position;
+
+	iterator = stack;
+	position = 0;
+	while (iterator != NULL)
+	{
+		if (iterator->index == nb)
+			break ;
+		position++;
+		iterator = iterator->next;
+	}
+	return (position);
 }

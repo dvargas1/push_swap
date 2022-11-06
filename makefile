@@ -13,10 +13,13 @@
 
 SRCS	=	push.c \
 			sort.c \
+			sortmore.c \
 			commands.c \
 			neveruse.c \
-			loadstack.c \
-			utils.c
+			utils.c \
+			utils2.c \
+			check.c
+
 OBJS		= ${SRCS:%.c=%.o}
 NAME		= push_swap
 LIB			= libft/libft.a
