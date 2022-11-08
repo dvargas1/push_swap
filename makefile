@@ -6,7 +6,7 @@
 #    By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/07 17:54:24 by dvargas           #+#    #+#              #
-#    Updated: 2022/10/25 15:21:09 by dvargas          ###   ########.fr        #
+#    Updated: 2022/11/08 08:39:11 by dvargas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS	=	push.c \
 			commands.c \
 			neveruse.c \
 			utils.c \
-			utils2.c \
+			chunkcontrol.c \
 			check.c
 
 OBJS		= ${SRCS:%.c=%.o}
@@ -47,7 +47,7 @@ clean:
 			@ echo ' '
 
 fclean:		clean
-			@ echo 'Removing pipex and pipex bonus'
+			@ echo 'Removing PushSwap'
 			rm -f ${NAMEBONUS}
 			rm -f ${NAME}
 			make fclean -C $(LIBFT_PATH)

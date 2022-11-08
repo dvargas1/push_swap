@@ -6,29 +6,31 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:54:30 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/06 18:54:34 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/08 07:50:59 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_checkisallnum(char **argv)
+int	ft_checkisallnum(char **av)
 {
 	int		i;
 	size_t	j;
 
-	i = 1;
+	i = 0;
 	j = 0;
-	while (argv[i])
+	while (av[i])
 	{
 		j = 0;
-		while (argv[i][j])
+		while (av[i][j])
 		{
-			if (argv[i][j] == '-')
+			if (av[i][j] == '+')
 				j++;
-			if (argv[i][j] == ' ')
+			if (av[i][j] == '-')
+				j++;
+			if (av[i][j] == ' ')
 				ft_error();
-			if (ft_isdigit(argv[i][j]) == 0)
+			if (ft_isdigit(av[i][j]) == 0)
 				ft_error();
 			j++;
 		}
@@ -37,22 +39,22 @@ int	ft_checkisallnum(char **argv)
 	return (0);
 }
 
-int	ft_checktwins(char **argv)
+int	ft_checktwins(char **av)
 {
 	int	i;
 	int	j;
 	int	twin;
 
-	i = 1;
+	i = 0;
 	j = 0;
 	twin = 0;
-	while (argv[i])
+	while (av[i])
 	{
 		j = 0;
 		twin = 0;
-		while (argv[j])
+		while (av[j])
 		{
-			if ((ft_strcmp(argv[i], argv[j]) == 0))
+			if ((ft_strcmp(av[i], av[j]) == 0))
 				twin++;
 			if (twin == 2)
 				ft_error();
@@ -63,15 +65,15 @@ int	ft_checktwins(char **argv)
 	return (0);
 }
 
-void	ft_loadstack(t_list **stack_a, char **argv, int argc)
+void	ft_loadstack(t_list **stack_a, char **av)
 {
 	int			i;
 	long int	tmp;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (av[i])
 	{
-		tmp = ft_atoi(argv[i]);
+		tmp = ft_atoi(av[i]);
 		if (tmp > MAX_INT || tmp < MIN_INT)
 			ft_error();
 		ft_lstadd_back(stack_a, ft_lstnew(tmp));

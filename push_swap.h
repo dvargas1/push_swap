@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:59:19 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/06 18:59:22 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/08 07:49:28 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	rr(t_list **stack_a, t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
 
 //Utilities
-void	ft_index(t_list *stack, int i, int j);
+void	ft_index(t_list *stack, int i, long int j);
 int		ft_issorted(t_list **stack);
 int		inrange(t_list *stack, int start, int end);
 int		bestn(int size);
@@ -60,6 +60,6 @@ int		ft_checktwins(char **argv);
 int		ft_checkisallnum(char **argv);
 void	cleanall(t_list *stack_a);
 void	ft_error(void);
-void	ft_loadstack(t_list **stack_a, char **argv, int argc);
+void	ft_loadstack(t_list **stack_a, char **argv);
 
 #endif

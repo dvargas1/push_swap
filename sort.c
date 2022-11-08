@@ -6,13 +6,12 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:35:34 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/06 15:41:48 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/06 19:21:51 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//sort2
 void	ft_sort2(t_list **stack_a)
 {
 	if ((*stack_a)->index == 2)

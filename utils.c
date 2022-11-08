@@ -6,13 +6,13 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:41:47 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/06 15:29:01 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/06 19:24:11 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_index(t_list *stack, int i, int j)
+void	ft_index(t_list *stack, int i, long int j)
 {
 	t_list	*tmp;
 	t_list	*highest;
@@ -22,7 +22,7 @@ void	ft_index(t_list *stack, int i, int j)
 	while (i > 0)
 	{
 		tmp = stack;
-		j = -2147483648;
+		j = -2147483649;
 		highest = NULL;
 		while (tmp != NULL)
 		{
