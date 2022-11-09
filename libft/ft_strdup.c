@@ -6,7 +6,7 @@
 /*   By: dvargas <dvarags@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:43:08 by dvargas           #+#    #+#             */
-/*   Updated: 2022/05/30 14:43:09 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:08:03 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strdup(const char *src)
 {
 	char	*dest;
 
+	if(!src)
+		return(0);
 	dest = (char *)malloc(sizeof(char) * ft_strlen(src) + 1);
 	if (!dest)
 		return (0);

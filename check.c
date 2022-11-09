@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 18:54:30 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/08 07:50:59 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/09 20:22:18 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,12 @@ void	cleanall(t_list *stack_a)
 	t_list	*tobefree;
 
 	tobefree = stack_a;
-	while (stack_a != NULL)
+	while (stack_a)
 	{
-		stack_a = stack_a->next;
-		free(tobefree);
-		tobefree = stack_a;
+		tobefree = stack_a->next;
+		free(stack_a);
+		stack_a = tobefree;
 	}
-	exit(200);
+	free(tobefree);
+//	exit(200);
 }
