@@ -30,3 +30,35 @@ void	sidecontrol(t_chunk *i, int sizeoflist)
 	if (i->end > sizeoflist)
 		i->end = sizeoflist;
 }
+
+int	findindexposition(t_list *stack, int nb)
+{
+	t_list	*iterator;
+	int		position;
+
+	iterator = stack;
+	position = 0;
+	while (iterator != NULL)
+	{
+		if (iterator->index == nb)
+			break ;
+		position++;
+		iterator = iterator->next;
+	}
+	return (position);
+}
+
+int	bestn(int size)
+{
+	int	n;
+
+	if (size <= 10)
+		n = 5;
+	else if (size <= 150)
+		n = 8;
+	else
+	{
+		n = 18;
+	}
+	return (n);
+}

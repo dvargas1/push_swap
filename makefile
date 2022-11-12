@@ -15,24 +15,26 @@ SRCS	=	push.c \
 			sort.c \
 			sortmore.c \
 			commands.c \
-			neveruse.c \
+			commands2.c \
 			utils.c \
-			chunkcontrol.c \
-			check.c
+			control.c \
+			checkandload.c \
+			free.c 
 
 OBJS		= ${SRCS:%.c=%.o}
 NAME		= push_swap
 LIB			= libft/libft.a
 CC			= cc
-CCFLAGS		= -Wall -Wextra -Werror -g -I libft/
+CCFLAGS		= -Wall -Wextra -Werror -g -I libft/ -fsanitize=address
 LIBFT_PATH  = libft/
 
 all:		${NAME}
 
 $(NAME):	${OBJS}
-			@ echo 'Creating the monster'
+			@ echo 'Creating the monster ${NAME}'
 			make all -C $(LIBFT_PATH)
 			${CC} ${CCFLAGS} ${OBJS} ${LIB} -o ${NAME}
+			@ echo ' '
 			@ echo 'ITS ALIVE!!!!!!!!!'
 			@ echo ' '
 
@@ -47,7 +49,7 @@ clean:
 			@ echo ' '
 
 fclean:		clean
-			@ echo 'Removing PushSwap'
+			@ echo 'Removing ${NAME}'
 			rm -f ${NAMEBONUS}
 			rm -f ${NAME}
 			make fclean -C $(LIBFT_PATH)

@@ -40,6 +40,7 @@ void	rr(t_list **stack_a, t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
 
 //Utilities
+void	ft_loadstack(t_list **stack_a, char **argv);
 void	ft_index(t_list *stack, int i, long int j);
 int		ft_issorted(t_list **stack);
 int		inrange(t_list *stack, int start, int end);
@@ -48,7 +49,7 @@ int		findindexposition(t_list *stack, int nb);
 void	sidecontrol(t_chunk *i, int sizeoflist);
 void	createchunk(t_chunk *i, int sizeoflist);
 
-// Sort3 and Sort5
+// Sort Functions
 void	ft_sort2(t_list **stack_a);
 void	ft_sort3(t_list **stack_a);
 void	ft_sort4(t_list **stack_a, t_list **stack_b);
@@ -58,8 +59,11 @@ void	ft_sortmore(t_list **stack_a, t_list **stack_b);
 // Checkers && FREE
 int		ft_checktwins(char **argv);
 int		ft_checkisallnum(char **argv);
+char	**ft_makeargs(char **argv);
+
+// FREE & Errors
 void	cleanall(t_list *stack_a);
 void	ft_error(void);
-void	ft_loadstack(t_list **stack_a, char **argv);
+void	freeav(char **av);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dvargas <dvargas@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:41:47 by dvargas           #+#    #+#             */
-/*   Updated: 2022/11/06 19:24:11 by dvargas          ###   ########.fr       */
+/*   Updated: 2022/11/11 17:54:59 by dvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,36 +70,4 @@ int	inrange(t_list *stack, int start, int end)
 		iterator = iterator->next;
 	}
 	return (0);
-}
-
-int	bestn(int size)
-{
-	int	n;
-
-	if (size <= 10)
-		n = 5;
-	else if (size <= 150)
-		n = 8;
-	else
-	{
-		n = 18;
-	}
-	return (n);
-}
-
-int	findindexposition(t_list *stack, int nb)
-{
-	t_list	*iterator;
-	int		position;
-
-	iterator = stack;
-	position = 0;
-	while (iterator != NULL)
-	{
-		if (iterator->index == nb)
-			break ;
-		position++;
-		iterator = iterator->next;
-	}
-	return (position);
 }

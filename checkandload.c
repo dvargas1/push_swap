@@ -17,7 +17,7 @@ int	ft_checkisallnum(char **av)
 	int		i;
 	size_t	j;
 
-	i = 0;
+	i = 1;
 	j = 0;
 	while (av[i])
 	{
@@ -65,6 +65,29 @@ int	ft_checktwins(char **av)
 	return (0);
 }
 
+char	**ft_makeargs(char **argv)
+{
+	char	*tmp;
+	char	*input;
+	char	**ret;
+	int		i;
+
+	input = ft_strdup(argv[1]);
+	i = 1;
+	while (argv[++i])
+	{
+		tmp = input;
+		input = ft_strjoin(tmp, " ");
+		free(tmp);
+		tmp = input;
+		input = ft_strjoin(tmp, argv[i]);
+		free(tmp);
+	}
+	ret = ft_split(input, ' ');
+	free(input);
+	return (ret);
+}
+
 void	ft_loadstack(t_list **stack_a, char **av)
 {
 	int			i;
@@ -79,25 +102,4 @@ void	ft_loadstack(t_list **stack_a, char **av)
 		ft_lstadd_back(stack_a, ft_lstnew(tmp));
 		i++;
 	}
-}
-
-void	ft_error(void)
-{
-	ft_putstr_fd("Error\n", 2);
-	exit(200);
-}
-
-void	cleanall(t_list *stack_a)
-{
-	t_list	*tobefree;
-
-	tobefree = stack_a;
-	while (stack_a)
-	{
-		tobefree = stack_a->next;
-		free(stack_a);
-		stack_a = tobefree;
-	}
-	free(tobefree);
-//	exit(200);
 }
