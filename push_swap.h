@@ -38,6 +38,7 @@ void	rname(t_list **stack, char name);
 void	ss(t_list **stack_a, t_list **stack_b);
 void	rr(t_list **stack_a, t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
+void	ft_printcmd(char name, int flag);
 
 //Utilities
 void	ft_loadstack(t_list **stack_a, char **argv);
@@ -57,13 +58,14 @@ void	ft_sort5(t_list **stack_a, t_list **stack_b);
 void	ft_sortmore(t_list **stack_a, t_list **stack_b);
 
 // Checkers && FREE
-int		ft_checktwins(char **argv);
 int		ft_checkisallnum(char **argv);
+int		checktwins(t_list **stack, int compare, int twin);
 char	**ft_makeargs(char **argv);
 
 // FREE & Errors
 void	cleanall(t_list *stack_a);
 void	ft_error(void);
 void	freeav(char **av);
+void	errandfree(char **av);
 
 #endif

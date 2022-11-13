@@ -40,7 +40,6 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	av = ft_makeargs(argv);
 	ft_checkisallnum(av);
-	ft_checktwins(av);
 	ft_loadstack(&stack_a, av);
 	argc = ft_lstsize(stack_a);
 	freeav(av);

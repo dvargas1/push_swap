@@ -29,44 +29,9 @@ int	ft_checkisallnum(char **av)
 			if (av[i][j] == '-')
 				j++;
 			if (av[i][j] == ' ')
-			{
-				freeav(av);
-				ft_error();
-			}
+				errandfree(av);
 			if (ft_isdigit(av[i][j]) == 0)
-			{
-				freeav(av);
-				ft_error();
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	ft_checktwins(char **av)
-{
-	int	i;
-	int	j;
-	int	twin;
-
-	i = 0;
-	j = 0;
-	twin = 0;
-	while (av[i])
-	{
-		j = 0;
-		twin = 0;
-		while (av[j])
-		{
-			if ((ft_strcmp(av[i], av[j]) == 0))
-				twin++;
-			if (twin == 2)
-			{
-				freeav(av);
-				ft_error();
-			}
+				errandfree(av);
 			j++;
 		}
 		i++;
@@ -97,6 +62,33 @@ char	**ft_makeargs(char **argv)
 	return (ret);
 }
 
+int	checktwins(t_list **stack, int compare, int twin)
+{
+	t_list	*comparator;
+	t_list	*iterator;
+
+	comparator = *stack;
+	iterator = *stack;
+	compare = comparator->content;
+	while (comparator != NULL)
+	{
+		while (iterator != NULL)
+		{
+			if (compare == iterator->content)
+				twin++;
+			if (twin == 2)
+				return (1);
+			iterator = iterator->next;
+		}
+		iterator = *stack;
+		comparator = comparator->next;
+		if (comparator != NULL)
+			compare = comparator->content;
+		twin = 0;
+	}
+	return (0);
+}
+
 void	ft_loadstack(t_list **stack_a, char **av)
 {
 	int			i;
@@ -114,5 +106,11 @@ void	ft_loadstack(t_list **stack_a, char **av)
 		}
 		ft_lstadd_back(stack_a, ft_lstnew(tmp));
 		i++;
+	}
+	if (checktwins(stack_a, 0, 0) == 1)
+	{
+		freeav(av);
+		cleanall(*stack_a);
+		ft_error();
 	}
 }

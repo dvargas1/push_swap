@@ -39,6 +39,12 @@ void	cleanall(t_list *stack_a)
 	free(tobefree);
 }
 
+void	errandfree(char **av)
+{
+	freeav(av);
+	ft_error();
+}
+
 void	ft_error(void)
 {
 	ft_putstr_fd("Error\n", 2);

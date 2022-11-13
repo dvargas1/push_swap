@@ -47,3 +47,35 @@ void	ss(t_list **stack_a, t_list **stack_b)
 	sname(stack_b, s);
 	ft_putstr_fd("ss\n", 1);
 }
+
+void	ft_printcmd(char *name)
+{
+	static char *toprint;
+	
+	if(!toprint)
+	{
+		toprint = name;
+	}
+
+	if((name == "ra" && toprint == "rb") || (name =="rb" && toprint == "ra"))
+	{
+		ft_putstr_fd("rrr\n", 1);
+		name = NULL; 	
+	}
+	else
+	{
+		ft_putstr_fd(name, 1);
+		ft_putchar_fd('\n', 1);
+	}
+	toprint = name;
+
+
+	/*
+	if((name == 'a' || name == 'b') && (ft_strcmp(toprint,"ra") || ft_strcmp(toprint, "rb")))
+	{
+		ft_putstr_fd("rrr", 1);
+		ft_putchar_fd('\n', 1);
+		toprint = NULL;
+	}
+	*/
+}
