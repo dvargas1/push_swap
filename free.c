@@ -37,7 +37,6 @@ void	cleanall(t_list *stack_a)
 		stack_a = tobefree;
 	}
 	free(tobefree);
-	exit(200);
 }
 
 void	ft_error(void)

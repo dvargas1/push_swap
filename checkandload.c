@@ -29,9 +29,15 @@ int	ft_checkisallnum(char **av)
 			if (av[i][j] == '-')
 				j++;
 			if (av[i][j] == ' ')
+			{
+				freeav(av);
 				ft_error();
+			}
 			if (ft_isdigit(av[i][j]) == 0)
+			{
+				freeav(av);
 				ft_error();
+			}
 			j++;
 		}
 		i++;
@@ -57,7 +63,10 @@ int	ft_checktwins(char **av)
 			if ((ft_strcmp(av[i], av[j]) == 0))
 				twin++;
 			if (twin == 2)
+			{
+				freeav(av);
 				ft_error();
+			}
 			j++;
 		}
 		i++;
@@ -98,7 +107,11 @@ void	ft_loadstack(t_list **stack_a, char **av)
 	{
 		tmp = ft_atoi(av[i]);
 		if (tmp > MAX_INT || tmp < MIN_INT)
+		{
+			freeav(av);
+			cleanall(*stack_a);
 			ft_error();
+		}
 		ft_lstadd_back(stack_a, ft_lstnew(tmp));
 		i++;
 	}

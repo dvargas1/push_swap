@@ -25,7 +25,7 @@ OBJS		= ${SRCS:%.c=%.o}
 NAME		= push_swap
 LIB			= libft/libft.a
 CC			= cc
-CCFLAGS		= -Wall -Wextra -Werror -g -I libft/ -fsanitize=address
+CCFLAGS		= -Wall -Wextra -Werror -g -I libft/
 LIBFT_PATH  = libft/
 
 all:		${NAME}

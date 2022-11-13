@@ -52,4 +52,5 @@ int	main(int argc, char **argv)
 	}
 	stack_a = ft_letsort(stack_a, argc);
 	cleanall(stack_a);
+	return (0);
 }
