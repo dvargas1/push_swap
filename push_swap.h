@@ -31,14 +31,14 @@ typedef struct s_vars
 }	t_chunk;
 
 //Basic Commands
-void	sname(t_list **stack_a, char name);
-void	pname(t_list **stack_a, t_list **stack_b, char name);
-void	rrname(t_list **stack, char name);
-void	rname(t_list **stack, char name);
-void	ss(t_list **stack_a, t_list **stack_b);
-void	rr(t_list **stack_a, t_list **stack_b);
-void	rrr(t_list **stack_a, t_list **stack_b);
-void	ft_printcmd(char name, int flag);
+void	sname(t_list **stack_a, char *name);
+void	pname(t_list **stack_a, t_list **stack_b, char *name);
+void	rrname(t_list **stack, char *name);
+void	rname(t_list **stack, char *name);
+//void	ss(t_list **stack_a, t_list **stack_b);
+//void	rr(t_list **stack_a, t_list **stack_b);
+//void	rrr(t_list **stack_a, t_list **stack_b);
+void	ft_printcmd(char *name);
 
 //Utilities
 void	ft_loadstack(t_list **stack_a, char **argv);

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	sname(t_list **stack_a, char name)
+void	sname(t_list **stack_a, char *name)
 {
 	t_list	*first;
 	t_list	*second;
@@ -31,14 +31,11 @@ void	sname(t_list **stack_a, char name)
 		second->next = first;
 		*stack_a = second;
 	}
-	ft_printcmd(name, 1);
-	ft_putchar_fd('s', 1);
-	ft_putchar_fd(name, 1);
-	ft_putchar_fd('\n', 1);
+	ft_printcmd(name);
 	return ;
 }
 
-void	pname(t_list **stack_a, t_list **stack_b, char name)
+void	pname(t_list **stack_a, t_list **stack_b, char *name)
 {
 	t_list	*first;
 	t_list	*second;
@@ -50,14 +47,11 @@ void	pname(t_list **stack_a, t_list **stack_b, char name)
 	*stack_a = second;
 	first->next = *stack_b;
 	*stack_b = first;
-	ft_printcmd(name, 1);
-	ft_putchar_fd('p', 1);
-	ft_putchar_fd(name, 1);
-	ft_putchar_fd('\n', 1);
+	ft_printcmd(name);
 	return ;
 }
 
-void	rrname(t_list **stack, char name)
+void	rrname(t_list **stack, char *name)
 {
 	t_list	*last;
 	t_list	*lastbutone;
@@ -79,15 +73,11 @@ void	rrname(t_list **stack, char name)
 	*stack = last;
 	last->next = node;
 	lastbutone->next = NULL;
-	ft_printcmd(name, 1);
-	ft_putchar_fd('r', 1);
-	ft_putchar_fd('r', 1);
-	ft_putchar_fd(name, 1);
-	ft_putchar_fd('\n', 1);
+	ft_printcmd(name);
 	return ;
 }
 
-void	rname(t_list **stack, char name)
+void	rname(t_list **stack, char *name)
 {
 	t_list	*last;
 	t_list	*node;
@@ -109,9 +99,6 @@ void	rname(t_list **stack, char name)
 	*stack = node2;
 	last->next = node;
 	node->next = NULL;
-	ft_printcmd(name, 0);
-//	ft_putchar_fd('r', 1);
-//	ft_putchar_fd(name, 1);
-//	ft_putchar_fd('\n', 1);
+	ft_printcmd(name);
 	return ;
 }

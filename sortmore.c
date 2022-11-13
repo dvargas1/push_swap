@@ -16,7 +16,7 @@ int	rposition(t_list **stack, int pos)
 {
 	while (pos > 0)
 	{
-		rname(stack, 'b');
+		rname(stack, "rb");
 		pos--;
 	}
 	return (pos);
@@ -27,7 +27,7 @@ int	rrposition(t_list **stack, int search, int pos)
 	pos = search - pos;
 	while (pos > 0)
 	{
-		rrname(stack, 'b');
+		rrname(stack, "rrb");
 		pos--;
 	}
 	return (pos);
@@ -45,15 +45,15 @@ void	ft_createb(t_list **stack_a, t_list **stack_b, int sizeoflist)
 			if ((*stack_a)->index >= i.start && ((*stack_a)->index <= i.end))
 			{
 				if ((*stack_a)->index > i.middle)
-					pname(stack_a, stack_b, 'b');
+					pname(stack_a, stack_b, "pb");
 				else
 				{
-					pname(stack_a, stack_b, 'b');
-					rname(stack_b, 'b');
+					pname(stack_a, stack_b, "pb");
+					rname(stack_b, "rb");
 				}
 			}
 			else
-				rname(stack_a, 'a');
+				rname(stack_a, "ra");
 		}
 		else
 			sidecontrol(&i, sizeoflist);
@@ -72,11 +72,13 @@ void	ft_sortmore(t_list **stack_a, t_list **stack_b)
 	{
 		if ((*stack_b)->index == search)
 		{
-			pname(stack_b, stack_a, 'a');
+			pname(stack_b, stack_a, "pa");
 			search--;
 		}
 		else
 		{
+			if ((*stack_b)->next->index == search)
+				sname(stack_b, "sb");
 			pos = findindexposition(*stack_b, search);
 			if (pos <= (search / 2))
 				pos = rposition(stack_b, pos);

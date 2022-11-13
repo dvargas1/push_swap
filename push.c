@@ -50,6 +50,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	stack_a = ft_letsort(stack_a, argc);
+	ft_printcmd("");
 	cleanall(stack_a);
 	return (0);
 }
